@@ -39,7 +39,6 @@ If you are interested in:
 feel free to explore the notebooks and code.
 ---
 
-
 ## Project overview
 
 This project implements a reproducible computational workflow for analysis of single-molecule tracking data obtained using sptPALM microscopy.
@@ -117,52 +116,147 @@ To develop a reproducible computational pipeline for:
 
 ## Pipeline overview
 
-The workflow consists of the following stages:
+### `01_trackmate_preprocessing.ipynb`
 
-### 1. Track import
-TrackMate CSV trajectory files are imported into Python.
+Initial preprocessing of TrackMate trajectory exports.
 
-### 2. Quality control
-Tracks with insufficient trajectory length are removed.
+This notebook performs:
+- loading of TrackMate CSV trajectory files,
+- metadata extraction,
+- trajectory quality control,
+- edge-artifact filtering,
+- minimum track-length filtering,
+- preprocessing statistics generation,
+- export of cleaned trajectory tables.
 
-### 3. Edge artifact filtering
-Non-biological trajectories near image borders are detected and excluded.
+Generated outputs include:
+- cleaned localization tables,
+- preprocessing QC summaries,
+- edge-filter diagnostics.
 
-### 4. MSD analysis
-Mean squared displacement (MSD) is calculated for individual trajectories.
+---
 
-For 2D diffusion:
+### `02_diffusion_analysis.ipynb`
 
-\[
-MSD(t) = 4Dt
-\]
+Mean squared displacement (MSD) and diffusion analysis.
 
-where:
-- D — diffusion coefficient,
-- slope — linear fit coefficient of MSD vs time.
+This notebook performs:
+- MSD calculation,
+- estimation of diffusion coefficients using
 
-Thus:
-
-\[
+```text
 D = slope / 4
-\]
+```
 
-### 5. Velocity analysis
-Frame-to-frame displacement velocities are analyzed.
+for two-dimensional diffusion,
+- per-track diffusion analysis,
+- per-cell aggregation,
+- diffusion distribution visualization.
 
-Velocity distributions are compared against ideal Brownian/Rayleigh diffusion models.
+Generated outputs include:
+- MSD tables,
+- diffusion coefficient summaries,
+- diffusion figures.
 
-### 6. Mobility-state characterization
-Trajectories are classified into:
-- slow/confined,
-- intermediate,
-- highly mobile fractions.
+---
 
-### 7. Statistical analysis
-Condition-dependent changes are evaluated at:
-- trajectory level,
-- cell level,
-- sample level.
+### `03_velocity_analysis.ipynb`
+
+Frame-to-frame displacement and velocity analysis.
+
+This notebook performs:
+- frame-to-frame displacement calculation,
+- velocity estimation,
+- velocity distribution analysis,
+- empirical and Rayleigh-based threshold estimation,
+- high-mobility fraction analysis,
+- oxidative-stress-induced mobility redistribution analysis.
+
+Generated outputs include:
+- velocity link tables,
+- velocity thresholds,
+- per-cell velocity summaries,
+- velocity-distribution figures.
+
+---
+
+### `04_mobility_state_analysis.ipynb`
+
+Mobility-state classification using threshold-based and mixture-model approaches.
+
+This notebook performs:
+- slow/fast mobility classification,
+- Gaussian mixture model (GMM) inference,
+- mobility-state fraction analysis,
+- per-cell state summaries,
+- exploratory mobility-state visualization.
+
+Generated outputs include:
+- mobility-state tables,
+- GMM classifications,
+- state-fraction figures.
+
+---
+
+### `05_hmm_inference.ipynb`
+
+Hidden Markov Model (HMM) analysis of trajectory dynamics.
+
+This notebook performs:
+- preparation of trajectory sequences,
+- Gaussian HMM fitting,
+- hidden-state inference,
+- state-transition analysis,
+- transition matrix estimation,
+- per-cell HMM-state quantification.
+
+Generated outputs include:
+- HMM state assignments,
+- transition matrices,
+- HMM mobility-state summaries,
+- state-transition figures.
+
+---
+
+### `06_sensitivity_analysis.ipynb`
+
+Robustness analysis of the computational pipeline.
+
+This notebook performs:
+- testing of different edge-filter margins,
+- testing of different minimum trajectory lengths,
+- threshold sensitivity analysis,
+- robustness evaluation of diffusion and mobility metrics.
+
+The goal is to determine whether observed biological trends remain stable across reasonable parameter changes.
+
+Generated outputs include:
+- sensitivity-analysis tables,
+- robustness figures,
+- parameter-dependence summaries.
+
+---
+
+### `07_final_figure_generation.ipynb`
+
+Generation of publication-ready final figures.
+
+This notebook performs:
+- loading of processed summary tables,
+- standardized plot generation,
+- creation of multi-panel figures,
+- export of high-resolution PNG and PDF figures.
+
+The notebook is intended for generation of reproducible figures for:
+- presentations,
+- posters,
+- README illustrations,
+- manuscripts.
+
+Generated outputs include:
+- publication-style figures,
+- combined summary panels,
+- export-ready graphics.
 
 ---
 

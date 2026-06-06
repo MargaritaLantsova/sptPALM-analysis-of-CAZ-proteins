@@ -3,6 +3,7 @@
 <p align="center">
   <img src="figures/readme/trajectory.gif" width="850">
 </p>
+<img width="885" height="374" alt="image" src="https://github.com/user-attachments/assets/5668f76f-2a59-4964-8181-e4de2cec1baf" />
 
 Computational pipeline for single-particle tracking PALM (sptPALM) analysis of synaptic protein mobility and membrane dynamics under different cellular perturbations.
 

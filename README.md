@@ -10,85 +10,35 @@ Computational pipeline for single-particle tracking PALM (sptPALM) analysis of s
 
 ## Welcome!
 
-Hello and welcome to this repository 👋
-
-This project focuses on computational analysis of single-molecule trajectories obtained using sptPALM microscopy. The main goal is to develop a reproducible and extensible workflow for studying nanoscale dynamics of synaptic proteins under different cellular conditions.
+Single-particle tracking photoactivated localization microscopy (sptPALM) enables quantitative analysis of membrane protein dynamics at the single-molecule level. This repository contains a reproducible computational pipeline developed for processing and analysis of sptPALM trajectories of cytomatrix active zone (CAZ) proteins under oxidative stress conditions. The workflow includes trajectory preprocessing, diffusion analysis, velocity-based mobility characterization, Hidden Markov Model inference, sensitivity analysis, and automated figure generation
 
 The repository is actively evolving together with the project itself. New analysis modules, visualization approaches, statistical methods, and trajectory-processing tools will continue to be added over time.
 
-Current pipeline features include:
-- trajectory preprocessing,
-- edge-artifact filtering,
-- diffusion analysis,
-- velocity distribution analysis,
-- mobility-state characterization,
-- exploratory clustering and HMM modules.
-
-Future updates may include:
-- fully automated tracking,
-- advanced state inference,
-- spatial nanodomain analysis,
-- and support for additional synaptic proteins.
-
-If you are interested in:
-- single-molecule microscopy,
-- membrane dynamics,
-- computational imaging,
-- or quantitative trajectory analysis,
-
-feel free to explore the notebooks and code.
 ---
 
 ## Project overview
 
-This project implements a reproducible computational workflow for analysis of single-molecule tracking data obtained using sptPALM microscopy.
+The pipeline was developed for quantitative analysis of SNAP25 and Syntaxin mobility in HEK293T cells under control and oxidative stress conditions.
 
-The pipeline was developed for quantitative analysis of CAZ (cytomatrix active zone) and SNARE-related proteins, including:
-- SNAP25b
-- Syntaxin (Syx)
+Experimental conditions included:
+- Control
+- 500 μM H₂O₂
+- 500 μM H₂O₂ (30 min exposure)
 
-under:
-- control conditions,
-- oxidative stress (500 μM H₂O₂),
-- prolonged oxidative stress exposure (30 min).
-
-The workflow combines:
-- trajectory preprocessing,
-- artifact filtering,
-- diffusion analysis,
-- velocity statistics,
-- mobility-state characterization,
-- and exploratory spatial analysis.
-
+The workflow processes TrackMate trajectory exports and produces diffusion, velocity, mobility-state, and robustness analyses together with publication-ready figures.
 ---
 
 ## Biological background
 
-Synaptic membrane proteins exhibit highly heterogeneous diffusion behavior due to:
-- membrane compartmentalization,
-- transient confinement,
-- protein-protein interactions,
-- clustering,
-- and dynamic reorganization of synaptic nanodomains.
+Synaptic membrane proteins exhibit heterogeneous diffusion behavior due to membrane organization, transient confinement, and protein interactions.
 
-Single-particle tracking PALM (sptPALM) enables nanoscale analysis of these dynamics by reconstructing trajectories of individual fluorescently labeled molecules.
-
-However, robust analysis of sptPALM data requires careful:
-- trajectory filtering,
-- artifact detection,
-- statistical normalization,
-- and reproducible computational processing.
-
+Single-particle tracking PALM (sptPALM) enables nanoscale characterization of these dynamics by reconstructing trajectories of individual molecules. Reliable biological interpretation, however, requires careful trajectory filtering, artifact detection, and reproducible computational analysis.
 ---
+## Reproducibility
 
-## Aim
+The analysis workflow is organized as a sequence of independent notebooks covering preprocessing, diffusion analysis, velocity analysis, mobility-state inference, sensitivity testing, and final figure generation.
 
-To develop a reproducible computational pipeline for:
-- quantitative analysis of sptPALM trajectories,
-- diffusion coefficient estimation,
-- mobility-state analysis,
-- artifact detection and correction,
-- and comparison of protein dynamics across experimental conditions.
+All intermediate results are exported as CSV tables and can be inspected independently. The final figures are generated automatically from processed results, enabling full reproducibility of the analytical workflow.
 
 ---
 
@@ -363,7 +313,15 @@ Run downstream analysis:
 
 ---
 
-## Main results
+## Results summary
+
+The developed pipeline identified substantial heterogeneity in SNAP25 and Syntaxin mobility distributions.
+
+Edge-associated tracking artifacts were detected and successfully removed through dedicated filtering procedures.
+
+Velocity distributions deviated from ideal Brownian diffusion behavior and exhibited pronounced heavy tails, indicating the presence of multiple mobility states.
+
+Oxidative stress altered mobility characteristics of synaptic proteins, with SNAP25 showing the strongest increase in highly mobile trajectory fractions after prolonged H₂O₂ exposure.
 
 ### Edge artifacts
 
@@ -415,15 +373,11 @@ Planned pipeline extensions include:
 
 ## Data availability
 
-This repository contains:
+This repository contains demonstration datasets, analysis notebooks, source code, and example outputs required to reproduce the computational workflow.
 
-* analysis scripts,
-* notebooks,
-* demo datasets,
-* example outputs,
-* and generated figures.
+Original microscopy datasets are not included because of their size and institutional storage restrictions.
 
-Raw microscopy datasets are not included due to size limitations.
+The metadata provided in the repository describe the structure of the analyzed experiments. Full experimental datasets may be available upon reasonable request and subject to laboratory data-sharing policies.
 
 ---
 
